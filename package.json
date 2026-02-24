@@ -1,0 +1,7 @@
+{
+  "name": "supernova-mvp-backend",
+  "type": "module",
+  "dependencies": {
+    "openai": "^4.0.0"
+  }
+}
