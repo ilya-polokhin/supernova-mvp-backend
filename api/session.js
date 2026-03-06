@@ -16,7 +16,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const { userMessage, sessionStart } = req.body;
+  const { userMessage, sessionStart, conversationHistory = [] } = req.body;
 
   if (!userMessage || !sessionStart) {
     return res.status(400).json({ error: "Missing required fields" });
@@ -75,9 +75,10 @@ Guide a gentle, embodied, recovery-focused stretch session.
     const completion = await openai.chat.completions.create({
       model: "gpt-4.1",
       messages: [
-        { role: "system", content: systemPrompt },
-        { role: "user", content: userMessage },
-      ],
+  { role: "system", content: systemPrompt },
+  ...conversationHistory,
+  { role: "user", content: userMessage }
+],
       temperature: 0.6,
     });
 
