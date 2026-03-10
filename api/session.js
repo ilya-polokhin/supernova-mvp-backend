@@ -23,7 +23,15 @@ export default async function handler(req, res) {
   }
 
   const elapsedTime = Math.floor((Date.now() - sessionStart) / 1000);
+const stageMap = {
+  1: "neck and upper cervical mobility",
+  2: "shoulders and upper back",
+  3: "spine and torso mobility",
+  4: "hips and lower body",
+  5: "closing relaxation and breath"
+};
 
+const currentStage = stageMap[sessionStage] || stageMap[1];
 const systemPrompt = `
 You are Supernova, a calm AI wellness guide.
 
