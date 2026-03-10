@@ -16,7 +16,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const { userMessage, sessionStart, conversationHistory = [] } = req.body;
+  const { userMessage, sessionStart, conversationHistory = [], sessionStage = 1 } = req.body;
 
   if (!userMessage || !sessionStart) {
     return res.status(400).json({ error: "Missing required fields" });
@@ -64,6 +64,11 @@ Do not reference previous sessions.
 
 TIME AWARENESS:
 Elapsed time: ${elapsedTime} seconds.
+SESSION STAGE:
+Current stage focuses on: ${currentStage}.
+Guide movements appropriate for this body region.
+Do not jump randomly to other body regions.
+
 If near 5 minutes, gently prepare to close.
 If approaching 8–10 minutes, begin soft landing.
 
